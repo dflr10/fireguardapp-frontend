@@ -1,4 +1,5 @@
-const API_URL = "api/emergencies";
+
+const API_URL =  import.meta.env.VITE_API_URL + "/api/emergencies";
 
 export async function createEmergency(data: any) {
   const res = await fetch(API_URL, {
