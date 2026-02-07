@@ -31,9 +31,9 @@ export function EmergencyMap() {
         >
           <Popup>
             <strong>{e.type}</strong><br />
-            {e.status}
+            Estado: {e.status}<br />
             {e.description}<br />
-            Estado: {e.synced ? "Sincronizada" : "Pendiente"}
+            {e.synced ? "Sincronizada" : "Pendiente"}
           </Popup>
         </Marker>
       ))}
