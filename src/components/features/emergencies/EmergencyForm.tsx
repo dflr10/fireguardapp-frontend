@@ -202,9 +202,9 @@ export default function EmergencyForm() {
                 <SelectValue />
               </SelectTrigger>
               <SelectContent className="bg-slate-800">
-                <SelectItem value="abierta">Abierta</SelectItem>
-                <SelectItem value="en_proceso">En proceso</SelectItem>
-                <SelectItem value="cerrada">Cerrada</SelectItem>
+                <SelectItem value="Abierta">Abierta</SelectItem>
+                <SelectItem value="En proceso">En proceso</SelectItem>
+                <SelectItem value="Cerrada">Cerrada</SelectItem>
               </SelectContent>
             </Select>
           </div>

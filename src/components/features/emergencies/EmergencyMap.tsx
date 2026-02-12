@@ -2,6 +2,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { useEmergencies } from "@/context/EmergencyContext";
 import { emergencyMarker } from "@/map/emergencyMarker";
 import { getMarkerColor } from "@/map/getMarkerColor";
+import { EmergencyType } from "@/types/emergency";
 
 export function EmergencyMap() {
   const { emergencies } = useEmergencies();
@@ -11,10 +12,17 @@ export function EmergencyMap() {
     Number.isFinite(Number(e.lng))
   );
 
+  const truncate = (text?: string, max = 30) => {
+    if (!text) return ""
+    return text.length > max
+      ? text.slice(0, max) + "..."
+      : text
+  }
+
   return (
     <MapContainer
       className="z-0 rounded-lg shadow-lg"
-      center={[6.2442, -75.5812]} // Medellín
+      center={[6.2442, -75.5812]}
       zoom={12}
       style={{ height: "100vh", width: "100%" }}
     >
@@ -30,10 +38,10 @@ export function EmergencyMap() {
           icon={emergencyMarker(getMarkerColor(e.status))}
         >
           <Popup>
-            <strong>{e.type}</strong><br />
+            <strong>{EmergencyType[e.type as EmergencyType]}</strong><br />
             Estado: {e.status}<br />
-            {e.description}<br />
-            {e.synced ? "Sincronizada" : "Pendiente"}
+            {truncate(e.description, 30)}<br />
+            {e.synced ? "Sincronizada" : "No sincronizada"}
           </Popup>
         </Marker>
       ))}
