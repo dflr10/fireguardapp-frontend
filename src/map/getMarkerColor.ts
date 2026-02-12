@@ -1,8 +1,8 @@
 export function getMarkerColor(status: string) {
   switch (status) {
-    case "en_proceso":
+    case "En proceso":
       return "#ff9500"; // naranja
-    case "cerrada":
+    case "Cerrada":
       return "#9092ae"; // gris
     default:
       return "#ff2121"; // verde
