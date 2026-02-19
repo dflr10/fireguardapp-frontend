@@ -5,6 +5,6 @@ export function getMarkerColor(status: string) {
     case "Cerrada":
       return "#9092ae"; // gris
     default:
-      return "#ff2121"; // verde
+      return "#ff2121"; // rojo
   }
 }

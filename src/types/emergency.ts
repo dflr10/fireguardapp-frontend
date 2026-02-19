@@ -12,6 +12,19 @@ export interface Emergency {
   createdAt: string;
 }
 
+export interface Operation {
+  commander: string
+  units: number
+  driver: string
+  assistants: string[]
+  vehicle: string
+  departuretime: string
+  arrivaltome: string
+  kmstart: number
+  kmend: number
+}
+
+
 export const EmergencyType: Record<EmergencyType, string> = {
   flight: "ACCIDENTE AÉREO",
   car_crash: "ACCIDENTE DE TRANSITO",
