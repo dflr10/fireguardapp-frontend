@@ -18,8 +18,8 @@ export interface Operation {
   driver: string
   assistants: string[]
   vehicle: string
-  departuretime: string
-  arrivaltome: string
+  departureTime: string
+  arrivalTime: string
   kmstart: number
   kmend: number
 }

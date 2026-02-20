@@ -115,9 +115,9 @@ export default function OperationForm({ value, onChange }: Props) {
           <Input
             className="bg-slate-800/50"
             type="time"
-            value={timestampToTime(value.departuretime)}
+            value={timestampToTime(value.departureTime)}
             onChange={(e) =>
-              setField("departuretime", timeToTimestamp(e.target.value))
+              setField("departureTime", timeToTimestamp(e.target.value))
             }
           />
 
@@ -128,9 +128,9 @@ export default function OperationForm({ value, onChange }: Props) {
           <Input
             className="bg-slate-800/50"
             type="time"
-            value={timestampToTime(value.arrivaltime)}
+            value={timestampToTime(value.arrivalTime)}
             onChange={(e) =>
-              setField("arrivaltime", timeToTimestamp(e.target.value))
+              setField("arrivalTime", timeToTimestamp(e.target.value))
             }
           />
         </div>
