@@ -20,8 +20,8 @@ export interface Operation {
   vehicle: string
   departureTime: string
   arrivalTime: string
-  kmstart: number
-  kmend: number
+  kmStart: number
+  kmEnd: number
 }
 
 

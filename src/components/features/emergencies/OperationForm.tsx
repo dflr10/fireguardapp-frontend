@@ -95,8 +95,8 @@ export default function OperationForm({ value, onChange }: Props) {
           <Input
             className="bg-slate-800/50"
             type="number"
-            value={value.kmstart || ""}
-            onChange={(e) => setField("kmstart", Number(e.target.value))}
+            value={value.kmStart || ""}
+            onChange={(e) => setField("kmStart", Number(e.target.value))}
           />
         </div>
 
@@ -105,8 +105,8 @@ export default function OperationForm({ value, onChange }: Props) {
           <Input
             className="bg-slate-800/50"
             type="number"
-            value={value.kmend || ""}
-            onChange={(e) => setField("kmend", Number(e.target.value))}
+            value={value.kmEnd || ""}
+            onChange={(e) => setField("kmEnd", Number(e.target.value))}
           />
         </div>
 
