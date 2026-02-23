@@ -269,11 +269,11 @@ export default function EmergencyForm() {
           {/* ================= TOGGLES ================= */}
 
           <div className="flex flex-wrap gap-2">
-            <Toggle label="Operaciones" active={enabled.operations} onClick={() => toggle("operations")} />
-            <Toggle label="Impacto" active={enabled.impact} onClick={() => toggle("impact")} />
-            <Toggle label="Datos adicionales" active={enabled.additional} onClick={() => toggle("additional")} />
-            <Toggle label="Cierre" active={enabled.closure} onClick={() => toggle("closure")} />
-            <Toggle label="Pacientes" active={enabled.patients} onClick={() => toggle("patients")} />
+            <Toggle label="Detalles de Operación" active={enabled.operations} onClick={() => toggle("operations")} />
+            <Toggle label="Detalles de Emergencia" active={enabled.impact} onClick={() => toggle("impact")} />
+            <Toggle label="Datos Adicionales" active={enabled.additional} onClick={() => toggle("additional")} />
+            <Toggle label="Cierre Operativo" active={enabled.closure} onClick={() => toggle("closure")} />
+            <Toggle label="Datos de Pacientes" active={enabled.patients} onClick={() => toggle("patients")} />
           </div>
 
           {/* ================= SUBFORMULARIOS ================= */}

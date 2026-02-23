@@ -1,6 +1,6 @@
 export type EmergencyStatus = "activa" | "atendida" | "resuelta";
 export type EmergencyPriority = "baja" | "media" | "alta";
-export type EmergencyType = "flight" | "car_crash" | "security" | "person_remove" | "search" | "park" | "apartment" | "bug_report" | "waves" | "droplet" | "water_drop" | "plumbing" | "terrain" | "explosion" | "power_off" | "notifications_off" | "air" | "grain" | "local_fire_department" | "landslide" | "forest" | "directions_car" | "construction" | "warning" | "helping_hand" | "group" | "favorite" | "record_voice_over" | "block" | "pets" | "wb_sunny" | "sensors" | "flash_on" | "local_hospital" | "groups" | "heart_plus" | "campaign" | "flame_delete";
+export type EmergencyType = "flight" | "car_crash" | "security" | "person_remove" | "search" | "park" | "apartment" | "bug_report" | "waves" | "droplet" | "water_drop" | "plumbing" | "terrain" | "explosion" | "power_off" | "notifications_off" | "air" | "grain" | "local_fire_department" | "landslide" | "forest" | "directions_car" | "construction" | "warning" | "helping_hand" | "group" | "favorite" | "record_voice_over" | "block" | "pets" | "wb_sunny" | "sensors" | "flash_on" | "local_hospital" | "groups" | "heart_plus" | "campaign" | "flame_delete" | "tornado";
 
 export interface Emergency {
   id: string;
@@ -63,5 +63,6 @@ export const EmergencyType: Record<EmergencyType, string> = {
   wb_sunny: "SEQUIA",
   sensors: "SISMO",
   flash_on: "TORMENTA ELÉCTRICA",
-  local_hospital: "TRASLADO DE PACIENTE"
+  local_hospital: "TRASLADO DE PACIENTE",
+  tornado: "VENDAVAL"
 };
