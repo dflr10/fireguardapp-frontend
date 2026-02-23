@@ -5,15 +5,24 @@ export async function submitEmergency(
   data: any,
   onSuccess?: () => Promise<void>
 ) {
+  let sentToServer = false;
+
   if (navigator.onLine) {
     try {
       await createEmergency(data);
-    } catch {
-      await saveEmergencyOffline(data);
+      sentToServer = true;
+    } catch (err) {
+      console.warn("API falló → fallback offline", err);
     }
-  } else {
-    await saveEmergencyOffline(data);
   }
+
+  if (!sentToServer) {
+    await saveEmergencyOffline({
+      ...data,
+      synced: false
+    });
+  }
+
   if (onSuccess) {
     await onSuccess();
   }

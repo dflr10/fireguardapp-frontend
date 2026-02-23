@@ -1,5 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 type Props = {
   value: any;
@@ -43,7 +44,7 @@ export default function ClosureForm({ value, onChange }: Props) {
           <Label>Limpieza realizada</Label>
           <select
             className="bg-slate-800/50 border rounded-md h-10 px-2"
-            value={value.cleaning ?? ""}
+            value={value.cleaning ?? false}
             onChange={(e)=>setField("cleaning", e.target.value === "true")}
           >
             <option value="">Seleccionar</option>
@@ -53,26 +54,21 @@ export default function ClosureForm({ value, onChange }: Props) {
         </div>
 
         <div className="space-y-2">
-          <Label>Organización</Label>
-          <Input
-            className="bg-slate-800/50"
-            value={value.organization || ""}
-            onChange={(e)=>setField("organization", e.target.value)}
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label>HEAS</Label>
-          <Input
-            className="bg-slate-800/50"
-            value={value.heas || ""}
-            onChange={(e)=>setField("heas", e.target.value)}
-          />
+          <Label>Organización realizada</Label>
+          <select
+            className="bg-slate-800/50 border rounded-md h-10 px-2"
+            value={value.organization ?? false}
+            onChange={(e)=>setField("organization", e.target.value === "true")}
+          >
+            <option value="">Seleccionar</option>
+            <option value="true">Sí</option>
+            <option value="false">No</option>
+          </select>
         </div>
 
         <div className="space-y-2 md:col-span-2">
           <Label>Observaciones</Label>
-          <Input
+          <Textarea
             className="bg-slate-800/50"
             value={value.observations || ""}
             onChange={(e)=>setField("observations", e.target.value)}

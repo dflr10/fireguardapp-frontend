@@ -34,8 +34,8 @@ export default function ImpactForm({ value, onChange }: Props) {
           <Input
             type="number"
             className="bg-slate-800/50"
-            value={value.deceased ?? ""}
-            onChange={(e)=>setField("deceased", Number(e.target.value))}
+            value={value.deaths ?? ""}
+            onChange={(e)=>setField("deaths", Number(e.target.value))}
           />
         </div>
 
@@ -64,8 +64,8 @@ export default function ImpactForm({ value, onChange }: Props) {
           <Input
             type="number"
             className="bg-slate-800/50"
-            value={value.families ?? ""}
-            onChange={(e)=>setField("families", Number(e.target.value))}
+            value={value.affectedFamilies ?? ""}
+            onChange={(e)=>setField("affectedFamilies", Number(e.target.value))}
           />
         </div>
 
@@ -74,8 +74,8 @@ export default function ImpactForm({ value, onChange }: Props) {
           <Input
             type="number"
             className="bg-slate-800/50"
-            value={value.housesAffected ?? ""}
-            onChange={(e)=>setField("housesAffected", Number(e.target.value))}
+            value={value.affectedHouses ?? ""}
+            onChange={(e)=>setField("affectedHouses", Number(e.target.value))}
           />
         </div>
 
@@ -84,8 +84,8 @@ export default function ImpactForm({ value, onChange }: Props) {
           <Input
             type="number"
             className="bg-slate-800/50"
-            value={value.housesDestroyed ?? ""}
-            onChange={(e)=>setField("housesDestroyed", Number(e.target.value))}
+            value={value.affectedHousesDestroyed ?? ""}
+            onChange={(e)=>setField("affectedHousesDestroyed", Number(e.target.value))}
           />
         </div>
 
