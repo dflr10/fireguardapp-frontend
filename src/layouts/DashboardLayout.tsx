@@ -36,7 +36,7 @@ export default function DashboardLayout() {
 
 
             <NavLink
-              to="/emergencies"
+              to="/emergencies/list"
               className={({ isActive }) =>
                 `w-full flex items-center gap-3 px-3 py-3 rounded-lg font-medium text-left transition-colors
      ${isActive ? "bg-white/10 text-white" : "text-blue-100 hover:bg-white/5"}`
@@ -71,7 +71,7 @@ export default function DashboardLayout() {
             to="/emergencies"
             className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-red-600 text-white py-3 rounded-xl font-bold transition-all shadow-lg shadow-primary/20"
           >
-            <span className="material-symbols-outlined text-sm">
+            <span className="material-symbols-outlined text-md">
               add_alert
             </span>
             Nueva Emergencia
