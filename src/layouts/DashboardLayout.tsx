@@ -37,9 +37,11 @@ export default function DashboardLayout() {
       {/* SIDEBAR */}
       <aside
         className={`
-          fixed md:fixed inset-y-0 left-0 z-50
+          fixed inset-y-0 left-0 z-50
           bg-secondary-blue dark:bg-[#0a192f] text-white
-          flex flex-col transition-all duration-300
+          flex flex-col
+          transition-[width,transform] duration-300 ease-in-out
+          will-change-transform
           ${isCollapsed ? "w-20" : "w-64"}
           ${isMobileOpen ? "translate-x-0" : "-translate-x-full"}
           md:translate-x-0
@@ -126,9 +128,10 @@ export default function DashboardLayout() {
       {/* MAIN CONTENT */}
       <div
         className={`
-          flex-1 min-h-screen bg-[#0b0f14] text-white transition-all duration-300
-          ${isCollapsed ? "md:ml-20" : "md:ml-64"}
-        `}
+        flex-1 min-h-screen bg-[#0b0f14] text-white
+        transition-all duration-300 ease-in-out
+        ${isCollapsed ? "md:ml-20" : "md:ml-64"}
+      `}
       >
         {/* HEADER */}
         <header className="sticky top-0 z-40 bg-black/80 backdrop-blur border-b border-white/10 px-4 md:px-8 py-4 flex items-center justify-between">
@@ -211,7 +214,14 @@ function MenuLink({ to, icon, label, collapsed, onClick }: any) {
         {icon}
       </span>
 
-      {!collapsed && <span>{label}</span>}
+      <span
+        className={`
+        transition-opacity duration-200
+        ${collapsed ? "opacity-0 w-0 overflow-hidden" : "opacity-100 ml-3"}
+      `}
+      >
+        {label}
+      </span>
     </NavLink>
   );
 }
