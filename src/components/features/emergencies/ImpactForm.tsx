@@ -15,7 +15,7 @@ export default function ImpactForm({ value, onChange }: Props) {
   return (
     <div className="space-y-4 border rounded-xl p-4 bg-slate-900/40">
 
-      <h3 className="font-bold text-lg">Impacto</h3>
+      <h3 className="font-bold text-lg">Detalles de la Emergencia</h3>
 
       <div className="grid md:grid-cols-2 gap-4">
 

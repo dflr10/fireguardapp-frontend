@@ -16,7 +16,7 @@ export default function ClosureForm({ value, onChange }: Props) {
   return (
     <div className="space-y-4 border rounded-xl p-4 bg-slate-900/40">
 
-      <h3 className="font-bold text-lg">Cierre operativo</h3>
+      <h3 className="font-bold text-lg">Cierre Operativo</h3>
 
       <div className="grid md:grid-cols-2 gap-4">
 

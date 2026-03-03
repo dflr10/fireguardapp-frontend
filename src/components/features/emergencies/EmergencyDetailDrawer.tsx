@@ -34,6 +34,7 @@ export default function EmergencyDetailDrawer({ emergency, onClose }: Props) {
         {/* ===================== */}
 
         <Section title="Información General">
+          <Field label="Tipo" value={EmergencyType[emergency.type as EmergencyType]} />
           <Field label="Descripción" value={emergency.description} />
           <Field label="Estado" value={emergency.status} />
           <Field label="Departamento" value={emergency.departmentId} />
@@ -49,14 +50,18 @@ export default function EmergencyDetailDrawer({ emergency, onClose }: Props) {
         {/* ===================== */}
 
         {emergency.operations?.length > 0 && (
-          <Section title="Operaciones">
+          <Section title="Detalles de la Operación">
             {emergency.operations.map((op: any, i: number) => (
               <SubCard key={i}>
-                <Field label="Comandante" value={op.commander} />
-                <Field label="Vehículo" value={op.vehicle} />
-                <Field label="Salida" value={formatDate(op.departureTime)} />
-                <Field label="Llegada" value={formatDate(op.arrivalTime)} />
-                <Field label="Personal" value={op.personnel} />
+                {op.commander ? <Field label="Comandante" value={op.commander} /> : <Field label="Comandante" value="No asignado" />}
+                {op.driver ? <Field label="Conductor" value={op.driver} /> : <Field label="Conductor" value="No asignado" />}
+                {op.vehicle ? <Field label="Vehículo" value={op.vehicle} /> : <Field label="Vehículo" value="No asignado" />}
+                {op.departureTime ? <Field label="Salida" value={formatDate(op.departureTime)} /> : <Field label="Salida" value={null} />}
+                {op.arrivalTime ? <Field label="Llegada" value={formatDate(op.arrivalTime)} /> : <Field label="Llegada" value={null} />}
+                {op.units ? <Field label="Unidades" value={op.units} /> : <Field label="Unidades" value={0} />}
+                {op.kmStart ? <Field label="Km inicial" value={op.kmStart} /> : <Field label="Km inicial" value={0} />}
+                {op.kmEnd ? <Field label="Km final" value={op.kmEnd} /> : <Field label="Km final" value={0} />}
+
 
                 {op.assistants?.length > 0 && (
                   <div>
@@ -78,15 +83,15 @@ export default function EmergencyDetailDrawer({ emergency, onClose }: Props) {
         {/* ===================== */}
 
         {emergency.impact && (
-          <Section title="Impacto">
-            <Field label="Fallecidos" value={emergency.impact.deaths} />
-            <Field label="Heridos" value={emergency.impact.injured} />
-            <Field label="Desaparecidos" value={emergency.impact.missing} />
-            <Field label="Personas afectadas" value={emergency.impact.affectedPeople} />
-            <Field label="Familias afectadas" value={emergency.impact.affectedFamilies} />
-            <Field label="Viviendas dañadas" value={emergency.impact.damagedHomes} />
-            <Field label="Viviendas destruidas" value={emergency.impact.destroyedHomes} />
-            <Field label="Área" value={emergency.impact.area} />
+          <Section title="Detalles de la Emergencia">
+            {emergency.impact.deaths ? <Field label="Fallecidos" value={emergency.impact.deaths} /> : <Field label="Fallecidos" value={0} />}
+            {emergency.impact.injured ? <Field label="Heridos" value={emergency.impact.injured} /> : <Field label="Heridos" value={0} />}
+            {emergency.impact.missing ? <Field label="Desaparecidos" value={emergency.impact.missing} /> : <Field label="Desaparecidos" value={0} />}
+            {emergency.impact.affectedPeople ? <Field label="Personas afectadas" value={emergency.impact.affectedPeople} /> : <Field label="Personas afectadas" value={0} />}
+            {emergency.impact.affectedFamilies ? <Field label="Familias afectadas" value={emergency.impact.affectedFamilies} /> : <Field label="Familias afectadas" value={0} />}
+            {emergency.impact.damagedHomes ? <Field label="Viviendas dañadas" value={emergency.impact.damagedHomes} /> : <Field label="Viviendas dañadas" value={0} />}
+            {emergency.impact.destroyedHomes ? <Field label="Viviendas destruidas" value={emergency.impact.destroyedHomes} /> : <Field label="Viviendas destruidas" value={0} />}
+            {emergency.impact.area ? <Field label="Área" value={emergency.impact.area} /> : <Field label="Área" value="No reportada" />}
           </Section>
         )}
 
@@ -96,9 +101,11 @@ export default function EmergencyDetailDrawer({ emergency, onClose }: Props) {
 
         {emergency.additional && (
           <Section title="Datos Adicionales">
-            {Object.entries(emergency.additional).map(([key, value]) => (
-              <Field key={key} label={key} value={String(value)} />
-            ))}
+              {emergency.additional.victimName ? <Field label="Nombre de la víctima" value={emergency.additional.victimName} /> : <Field label="Nombre de la víctima" value="No reportado" />}
+              {emergency.additional.idNumber ? <Field label="Documento de la víctima" value={emergency.additional.idNumber} /> : <Field label="Documento de la víctima" value="No reportado" />}
+              {emergency.additional.vehiclePlate ? <Field label="Placa del vehículo" value={emergency.additional.vehiclePlate} /> : <Field label="Placa del vehículo" value="No reportada" />}
+              {emergency.additional.fireNotes ? <Field label="Notas incendio / rescate" value={emergency.additional.fireNotes} /> : <Field label="Notas incendio / rescate" value="No reportadas" />}
+              {emergency.additional.development ? <Field label="Desarrollo del evento" value={emergency.additional.development} /> : <Field label="Desarrollo del evento" value="No reportado" />}
           </Section>
         )}
 
@@ -108,14 +115,13 @@ export default function EmergencyDetailDrawer({ emergency, onClose }: Props) {
 
         {emergency.closure && (
           <Section title="Cierre Operativo">
-            <Field label="Organización" value={emergency.closure.organization} />
-            <Field label="Distancia (km)" value={emergency.closure.distance} />
-            <Field label="Kilometraje Final" value={emergency.closure.finalKm} />
-            <Field label="Gastos" value={emergency.closure.expenses} />
-            <Field label="HEAS" value={emergency.closure.heas} />
-            <Field label="Incidentes" value={emergency.closure.incidents} />
-            <Field label="Limpieza realizada" value={emergency.closure.cleaning ? "Sí" : "No"} />
-            <Field label="Observaciones" value={emergency.closure.observations} />
+            {emergency.closure.distance ? <Field label="Distancia recorrida (km)" value={emergency.closure.distance} /> : <Field label="Distancia (km)" value={0} />}
+            {emergency.closure.finalKm ? <Field label="Kilometraje Final" value={emergency.closure.finalKm} /> : <Field label="Kilometraje Final" value={0} />}
+            {emergency.closure.cleaning !== undefined ? <Field label="Limpieza realizada" value={emergency.closure.cleaning ? "Sí" : "No"} /> : <Field label="Limpieza realizada" value="No reportada" />}
+            {emergency.closure.organization !== undefined ? <Field label="Organización realizada" value={emergency.closure.organization ? "Sí" : "No"} /> : <Field label="Organización realizada" value="No reportada" />}
+            {emergency.closure.expenses ? <Field label="Gastos" value={emergency.closure.expenses} /> : <Field label="Gastos" value="No reportados" />}
+            {emergency.closure.incidents ? <Field label="Incidentes" value={emergency.closure.incidents} /> : <Field label="Incidentes" value="No reportados" />}
+            {emergency.closure.observations ? <Field label="Observaciones" value={emergency.closure.observations} /> : <Field label="Observaciones" value="No reportadas" />}
           </Section>
         )}
 
@@ -124,18 +130,18 @@ export default function EmergencyDetailDrawer({ emergency, onClose }: Props) {
         {/* ===================== */}
 
         {emergency.patients?.length > 0 && (
-          <Section title="Pacientes / Epicrisis">
+          <Section title="Datos de Pacientes / Epicrisis">
             {emergency.patients.map((p: any, i: number) => (
               <SubCard key={i}>
-                <Field label="Nombre" value={p.name} />
-                <Field label="Documento" value={p.document} />
-                <Field label="Edad" value={p.age} />
-                <Field label="Género" value={p.gender} />
-                <Field label="Teléfono" value={p.phone} />
-                <Field label="Dirección" value={p.address} />
-                <Field label="Acompañante" value={p.companion} />
-                <Field label="Estado" value={p.status} />
-                <Field label="Trasladado a" value={p.transferredTo} />
+                {p.name ? <Field label="Nombre" value={p.name} /> : <Field label="Nombre" value="No reportado" />}
+                {p.document ? <Field label="Documento" value={p.document} /> : <Field label="Documento" value="No reportado" />}
+                {p.age !== undefined ? <Field label="Edad" value={p.age} /> : <Field label="Edad" value={0} />}
+                {p.gender ? <Field label="Género" value={p.gender} /> : <Field label="Género" value="No reportado" />}
+                {p.phone ? <Field label="Teléfono" value={p.phone} /> : <Field label="Teléfono" value="No reportado" />}
+                {p.address ? <Field label="Dirección" value={p.address} /> : <Field label="Dirección" value="No reportada" />}
+                {p.companion ? <Field label="Acompañante" value={p.companion} /> : <Field label="Acompañante" value="No reportado" />}
+                {p.status ? <Field label="Estado" value={p.status} /> : <Field label="Estado" value="No reportado" />}
+                {p.transferredTo ? <Field label="Trasladado a" value={p.transferredTo} /> : <Field label="Trasladado a" value="No reportado" />}
 
                 {p.injuries?.length > 0 && (
                   <ListField label="Lesiones" items={p.injuries} />
@@ -145,10 +151,10 @@ export default function EmergencyDetailDrawer({ emergency, onClose }: Props) {
                   <ListField label="Procedimientos" items={p.procedures} />
                 )}
 
-                <Field label="Glasgow Ocular" value={p.glasgowEye} />
-                <Field label="Glasgow Verbal" value={p.glasgowVerbal} />
-                <Field label="Glasgow Motor" value={p.glasgowMotor} />
-                <Field label="Notas" value={p.notes} />
+                {p.glasgowEye !== undefined ? <Field label="Glasgow Ocular" value={p.glasgowEye} /> : <Field label="Glasgow Ocular" value={0} />}
+                {p.glasgowVerbal !== undefined ? <Field label="Glasgow Verbal" value={p.glasgowVerbal} /> : <Field label="Glasgow Verbal" value={0} />}
+                {p.glasgowMotor !== undefined ? <Field label="Glasgow Motor" value={p.glasgowMotor} /> : <Field label="Glasgow Motor" value={0} />}
+                {p.notes ? <Field label="Notas" value={p.notes} /> : <Field label="Notas" value="No reportadas" />}
               </SubCard>
             ))}
           </Section>
