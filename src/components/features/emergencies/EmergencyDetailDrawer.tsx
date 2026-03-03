@@ -143,17 +143,12 @@ export default function EmergencyDetailDrawer({ emergency, onClose }: Props) {
                 {p.status ? <Field label="Estado" value={p.status} /> : <Field label="Estado" value="No reportado" />}
                 {p.transferredTo ? <Field label="Trasladado a" value={p.transferredTo} /> : <Field label="Trasladado a" value="No reportado" />}
 
-                {p.injuries?.length > 0 && (
-                  <ListField label="Lesiones" items={p.injuries} />
-                )}
+                {p.injuries ? <ListField label="Lesiones" items={p.injuries} /> : <Field label="Lesiones" value={["No reportadas"]} />}
+                {p.procedures ? <ListField label="Procedimientos" items={p.procedures} /> : <Field label="Procedimientos" value={["No reportados"]} />}
 
-                {p.procedures?.length > 0 && (
-                  <ListField label="Procedimientos" items={p.procedures} />
-                )}
-
-                {p.glasgowEye !== undefined ? <Field label="Glasgow Ocular" value={p.glasgowEye} /> : <Field label="Glasgow Ocular" value={0} />}
-                {p.glasgowVerbal !== undefined ? <Field label="Glasgow Verbal" value={p.glasgowVerbal} /> : <Field label="Glasgow Verbal" value={0} />}
-                {p.glasgowMotor !== undefined ? <Field label="Glasgow Motor" value={p.glasgowMotor} /> : <Field label="Glasgow Motor" value={0} />}
+                {p.glasgowEye !== undefined ? <Field label="Glasgow Ocular" value={p.glasgowEye} /> : <Field label="Glasgow Ocular" value={null} />}
+                {p.glasgowVerbal !== undefined ? <Field label="Glasgow Verbal" value={p.glasgowVerbal} /> : <Field label="Glasgow Verbal" value={null} />}
+                {p.glasgowMotor !== undefined ? <Field label="Glasgow Motor" value={p.glasgowMotor} /> : <Field label="Glasgow Motor" value={null} />}
                 {p.notes ? <Field label="Notas" value={p.notes} /> : <Field label="Notas" value="No reportadas" />}
               </SubCard>
             ))}

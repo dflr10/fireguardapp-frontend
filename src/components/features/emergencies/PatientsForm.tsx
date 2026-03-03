@@ -19,7 +19,7 @@ const emptyPatient = {
   glasgowEye: "",
   glasgowVerbal: "",
   glasgowMotor: "",
-  procedures: "",
+  procedures: [""],
   notes: "",
   transferredTo: "",
   status: ""
